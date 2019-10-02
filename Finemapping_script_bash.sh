@@ -5,6 +5,9 @@
 #### This is all the code for making the finemapping data work ####
 ###################################################################
 
+
+## HLSRC ##
+
 #just keeps the SNPs 500kb either side of proxy
 cat <(sed -n 1p blood_HIGH_LIGHT_SCATTER_RETICULOCYTE_COUNT.sumstats.gz_reordered_for_finemapping.txt) <(awk -F "\t" '{ if($2 == 3 && $3 >= 45915921 && $3 <= 46915921) { print }}' blood_HIGH_LIGHT_SCATTER_RETICULOCYTE_COUNT.sumstats.gz_reordered_for_finemapping.txt) > HLSRC_500kb_either_side_proxy.txt
 
@@ -40,6 +43,12 @@ sed 's/\t/ /g' HLSRC_matrix.ld > HLSRC.ld
 
 sed  -i '1i rsid chromosome position noneff_allele eff_allele maf beta se' HLSRC.z
 
+### Run the finemapping program ###
+
+./finemap_v1.2_x86_64 --sss --in-files HLSRC/master --dataset 1
+
+
+
 ## LC ##
 
 cat <(sed -n 1p blood_LYMPHOCYTE_COUNT.sumstats.gz_reordered_for_finemapping.txt) <(awk -F "\t" '{ if($2 == 3 && $3 >= 45915921 && $3 <= 46915921) { print }}' blood_LYMPHOCYTE_COUNT.sumstats.gz_reordered_for_finemapping.txt) > LC_500kb_either_side_proxy.txt          
@@ -65,6 +74,10 @@ sed  -i '1i rsid chromosome position noneff_allele eff_allele maf beta se' LC.z
 
 sed 's/\t/ /g' LC_matrix.ld > LC.ld
 
+./finemap_v1.2_x86_64 --sss --in-files LC/master --dataset 1
+
+
+
 ### MCH ###
 
 cat <(sed -n 1p blood_MEAN_CORPUSCULAR_HEMOGLOBIN.sumstats.gz_reordered_for_finemapping.txt) <(awk -F "\t" '{ if($2 == 3 && $3 >= 45915921 && $3 <= 46915921) { print }}' blood_MEAN_CORPUSCULAR_HEMOGLOBIN.sumstats.gz_reordered_for_finemapping.txt) > MCH_500kb_either_side_proxy.txt          
@@ -88,6 +101,9 @@ sed 's/\t/ /g' MCH_SNP_data_in_matrix.txt  > MCH.z
 sed  -i '1i rsid chromosome position noneff_allele eff_allele maf beta se' MCH.z
 
 sed 's/\t/ /g' MCH_matrix.ld > MCH.ld
+
+./finemap_v1.2_x86_64 --sss --in-files MCH/master --dataset 1
+
 
 
 
@@ -116,6 +132,10 @@ sed  -i '1i rsid chromosome position noneff_allele eff_allele maf beta se' MSCV.
 
 sed 's/\t/ /g' MSCV_matrix.ld > MSCV.ld
 
+./finemap_v1.2_x86_64 --sss --in-files MSCV/master --dataset 1
+
+
+
 
 ### Height ###
 
@@ -140,6 +160,10 @@ sed 's/\t/ /g' height_SNP_data_in_matrix.txt  > height.z
 sed  -i '1i rsid chromosome position noneff_allele eff_allele maf beta se' height.z
 
 sed 's/\t/ /g' height_matrix.ld > height.ld
+
+./finemap_v1.2_x86_64 --sss --in-files height/master --dataset 1
+
+
 
 
 ### UC ##
@@ -166,4 +190,6 @@ sed  -i '1i rsid chromosome position noneff_allele eff_allele maf beta se' UC.z
 
 
 sed 's/\t/ /g' UC_matrix.ld > UC.ld
+
+./finemap_v1.2_x86_64 --sss --in-files UC/master --dataset 1
 
