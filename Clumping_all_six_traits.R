@@ -10,7 +10,7 @@ library(data.table)
 library(pkgcond)
 library(TwoSampleMR)
 
-setwd("/newhome/hw15842/PhD/CCR5/ALL_OTHER_TRAITS")
+
 
 ### Read in the summary stats (sig pvalues only) for the 6 sig traits 
 
